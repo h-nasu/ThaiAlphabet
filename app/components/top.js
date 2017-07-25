@@ -19,8 +19,8 @@ export default class Top extends React.Component {
             <ListItem onPress={() => this.props.navigation.navigate('Alphabet')} >
               <Text>Thai Alphabets</Text>
             </ListItem>
-            <ListItem>
-              <Text>Practice Thai Alphabet</Text>
+            <ListItem onPress={() => this.props.navigation.navigate('Quiz')} >
+              <Text>Quiz</Text>
             </ListItem>
           </List>
         </Content>

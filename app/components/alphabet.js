@@ -25,8 +25,9 @@ class Alphabet extends React.Component {
                   {alphabet.symbol}
                 </Text>
                 <Text>
-                  Reading: <Text  style={styles.definition}>{alphabet.reading}{'\n'}</Text>
-                  Meaning: <Text  style={styles.definition}>{alphabet.meaningEng}{'\n'}</Text>
+                  <Text  style={styles.definition}>{alphabet.readingThai}{'\n'}</Text>
+                  Reading: <Text  style={styles.definition}>{alphabet.readingEng}{'\n'}</Text>
+                  Meaning: <Text  style={styles.definition}>{alphabet.meaning}{'\n'}</Text>
                   Initial: <Text  style={styles.definition}>{alphabet.initial}{'\n'}</Text>
                   Final: <Text  style={styles.definition}>{alphabet.final}</Text>
                 </Text>

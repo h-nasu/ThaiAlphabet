@@ -1,0 +1,410 @@
+[
+	{
+		"symbol": "ก",
+		"readingThai": "ก ไก่",
+		"readingEng": "ko kai",
+		"meaning": "chicken",
+		"initial": "k",
+		"final": "k",
+		"class": "mid"
+	},
+	{
+		"symbol": "ข",
+		"readingThai": "ข ไข่",
+		"readingEng": "kho khai",
+		"meaning": "egg",
+		"initial": "kh",
+		"final": "k",
+		"class": "high"
+	},
+	{
+		"symbol": "ฃ",
+		"readingThai": "ฃ ขวด",
+		"readingEng": "kho khuat",
+		"meaning": "bottle (obsolete)",
+		"initial": "kh",
+		"final": "k",
+		"class": "high"
+	},
+	{
+		"symbol": "ค",
+		"readingThai": "ค ควาย",
+		"readingEng": "kho khwai",
+		"meaning": "buffalo",
+		"initial": "kh",
+		"final": "k",
+		"class": "low"
+	},
+	{
+		"symbol": "ฅ",
+		"readingThai": "ฅ คน",
+		"readingEng": "kho khon",
+		"meaning": "person (obsolete)",
+		"initial": "kh",
+		"final": "k",
+		"class": "low"
+	},
+	{
+		"symbol": "ฆ",
+		"readingThai": "ฆ ระฆัง",
+		"readingEng": "kho ra-khang",
+		"meaning": "bell",
+		"initial": "kh",
+		"final": "k",
+		"class": "low"
+	},
+	{
+		"symbol": "ง",
+		"readingThai": "ง งู",
+		"readingEng": "ngo ngu",
+		"meaning": "snake",
+		"initial": "ng",
+		"final": "ng",
+		"class": "low"
+	},
+	{
+		"symbol": "จ",
+		"readingThai": "จ จาน",
+		"readingEng": "cho chan",
+		"meaning": "plate",
+		"initial": "ch",
+		"final": "t",
+		"class": "mid"
+	},
+	{
+		"symbol": "ฉ",
+		"readingThai": "ฉ ฉิ่ง",
+		"readingEng": "cho ching",
+		"meaning": "cymbals",
+		"initial": "ch",
+		"final": " –",
+		"class": "high"
+	},
+	{
+		"symbol": "ช",
+		"readingThai": "ช ช้าง",
+		"readingEng": "cho chang",
+		"meaning": "elephant",
+		"initial": "ch",
+		"final": "t",
+		"class": "low"
+	},
+	{
+		"symbol": "ซ",
+		"readingThai": "ซ โซ่",
+		"readingEng": "so so",
+		"meaning": "chain",
+		"initial": "s",
+		"final": "t",
+		"class": "low"
+	},
+	{
+		"symbol": "ฌ",
+		"readingThai": "ฌ เฌอ",
+		"readingEng": "cho choe",
+		"meaning": "tree",
+		"initial": "ch",
+		"final": " –",
+		"class": "low"
+	},
+	{
+		"symbol": "ญ",
+		"readingThai": "ญ หญิง",
+		"readingEng": "yo ying",
+		"meaning": "woman",
+		"initial": "y",
+		"final": "n",
+		"class": "low"
+	},
+	{
+		"symbol": "ฎ",
+		"readingThai": "ฎ ชฎา",
+		"readingEng": "do cha-da",
+		"meaning": "headdress",
+		"initial": "d",
+		"final": "t",
+		"class": "mid"
+	},
+	{
+		"symbol": "ฏ",
+		"readingThai": "ฏ ปฏัก",
+		"readingEng": "to pa-tak",
+		"meaning": "goad",
+		"initial": " javelin",
+		"final": "t",
+		"class": "t"
+	},
+	{
+		"symbol": "ฐ",
+		"readingThai": "ฐ ฐาน",
+		"readingEng": "tho than",
+		"meaning": "pedestal",
+		"initial": "th",
+		"final": "t",
+		"class": "high"
+	},
+	{
+		"symbol": "ฑ",
+		"readingThai": "ฑ มณโฑ",
+		"readingEng": "tho montho",
+		"meaning": "Montho",
+		"initial": " character from Ramayana",
+		"final": "th",
+		"class": "t"
+	},
+	{
+		"symbol": "ฒ",
+		"readingThai": "ฒ ผู้เฒ่า",
+		"readingEng": "tho phu-thao",
+		"meaning": "elder",
+		"initial": "th",
+		"final": "t",
+		"class": "low"
+	},
+	{
+		"symbol": "ณ",
+		"readingThai": "ณ เณร",
+		"readingEng": "no nen",
+		"meaning": "samanera",
+		"initial": "n",
+		"final": "n",
+		"class": "low"
+	},
+	{
+		"symbol": "ด",
+		"readingThai": "ด เด็ก",
+		"readingEng": "do dek",
+		"meaning": "child",
+		"initial": "d",
+		"final": "t",
+		"class": "mid"
+	},
+	{
+		"symbol": "ต",
+		"readingThai": "ต เต่า",
+		"readingEng": "to tao",
+		"meaning": "turtle",
+		"initial": "t",
+		"final": "t",
+		"class": "mid"
+	},
+	{
+		"symbol": "ถ",
+		"readingThai": "ถ ถุง",
+		"readingEng": "tho thung",
+		"meaning": "sack",
+		"initial": "th",
+		"final": "t",
+		"class": "high"
+	},
+	{
+		"symbol": "ท",
+		"readingThai": "ท ทหาร",
+		"readingEng": "tho thahan",
+		"meaning": "soldier",
+		"initial": "th",
+		"final": "t",
+		"class": "low"
+	},
+	{
+		"symbol": "ธ",
+		"readingThai": "ธ ธง",
+		"readingEng": "tho thong",
+		"meaning": "flag",
+		"initial": "th",
+		"final": "t",
+		"class": "low"
+	},
+	{
+		"symbol": "น",
+		"readingThai": "น หนู",
+		"readingEng": "no nu",
+		"meaning": "mouse",
+		"initial": "n",
+		"final": "n",
+		"class": "low"
+	},
+	{
+		"symbol": "บ",
+		"readingThai": "บ ใบไม้",
+		"readingEng": "bo baimai",
+		"meaning": "leaf",
+		"initial": "b",
+		"final": "p",
+		"class": "mid"
+	},
+	{
+		"symbol": "ป",
+		"readingThai": "ป ปลา",
+		"readingEng": "po pla",
+		"meaning": "fish",
+		"initial": "p",
+		"final": "p",
+		"class": "mid"
+	},
+	{
+		"symbol": "ผ",
+		"readingThai": "ผ ผึ้ง",
+		"readingEng": "pho phueng",
+		"meaning": "bee",
+		"initial": "ph",
+		"final": " –",
+		"class": "high"
+	},
+	{
+		"symbol": "ฝ",
+		"readingThai": "ฝ ฝา",
+		"readingEng": "fo fa",
+		"meaning": "lid",
+		"initial": "f",
+		"final": " –",
+		"class": "high"
+	},
+	{
+		"symbol": "พ",
+		"readingThai": "พ พาน",
+		"readingEng": "pho phan",
+		"meaning": "phan",
+		"initial": "ph",
+		"final": "p",
+		"class": "low"
+	},
+	{
+		"symbol": "ฟ",
+		"readingThai": "ฟ ฟัน",
+		"readingEng": "fo fan",
+		"meaning": "teeth",
+		"initial": "f",
+		"final": "p",
+		"class": "low"
+	},
+	{
+		"symbol": "ภ",
+		"readingThai": "ภ สำเภา",
+		"readingEng": "pho sam-phao",
+		"meaning": "Junk",
+		"initial": "ph",
+		"final": "p",
+		"class": "low"
+	},
+	{
+		"symbol": "ม",
+		"readingThai": "ม ม้า",
+		"readingEng": "mo ma",
+		"meaning": "horse",
+		"initial": "m",
+		"final": "m",
+		"class": "low"
+	},
+	{
+		"symbol": "ย",
+		"readingThai": "ย ยักษ์",
+		"readingEng": "yo yak",
+		"meaning": "giant",
+		"initial": " yaksha",
+		"final": "y",
+		"class": "–"
+	},
+	{
+		"symbol": "",
+		"readingThai": "",
+		"readingEng": "",
+		"meaning": "",
+		"initial": "",
+		"final": "or [n]",
+		"class": ""
+	},
+	{
+		"symbol": "ร",
+		"readingThai": "ร เรือ",
+		"readingEng": "ro ruea",
+		"meaning": "boat",
+		"initial": "r",
+		"final": "n",
+		"class": "low"
+	},
+	{
+		"symbol": "ล",
+		"readingThai": "ล ลิง",
+		"readingEng": "lo ling",
+		"meaning": "monkey",
+		"initial": "l",
+		"final": "n",
+		"class": "low"
+	},
+	{
+		"symbol": "ว",
+		"readingThai": "ว แหวน",
+		"readingEng": "wo waen",
+		"meaning": "ring",
+		"initial": "w",
+		"final": "–",
+		"class": "low"
+	},
+	{
+		"symbol": "ศ",
+		"readingThai": "ศ ศาลา",
+		"readingEng": "so sala",
+		"meaning": "pavilion",
+		"initial": " sala",
+		"final": "s",
+		"class": "t"
+	},
+	{
+		"symbol": "ษ",
+		"readingThai": "ษ ฤๅษี",
+		"readingEng": "so rue-si",
+		"meaning": "hermit",
+		"initial": "s",
+		"final": "t",
+		"class": "high"
+	},
+	{
+		"symbol": "ส",
+		"readingThai": "ส เสือ",
+		"readingEng": "so suea",
+		"meaning": "tiger",
+		"initial": "s",
+		"final": "t",
+		"class": "high"
+	},
+	{
+		"symbol": "ห",
+		"readingThai": "ห หีบ",
+		"readingEng": "ho hip",
+		"meaning": "chest",
+		"initial": " box",
+		"final": "h",
+		"class": "–"
+	},
+	{
+		"symbol": "ฬ",
+		"readingThai": "ฬ จุฬา",
+		"readingEng": "lo chu-la",
+		"meaning": "kite",
+		"initial": "l",
+		"final": "n",
+		"class": "low"
+	},
+	{
+		"symbol": "อ",
+		"readingThai": "อ อ่าง",
+		"readingEng": "o ang",
+		"meaning": "basin",
+		"initial": "[ʔ]",
+		"final": " –",
+		"class": "mid"
+	},
+	{
+		"symbol": "ฮ",
+		"readingThai": "ฮ นกฮูก",
+		"readingEng": "ho nok-huk",
+		"meaning": "owl",
+		"initial": "h",
+		"final": " –",
+		"class": "low"
+	},
+	{
+		"symbol": ""
+	}
+]
