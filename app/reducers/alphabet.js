@@ -1,33 +1,81 @@
 import thaiAlphabets from '../resources/thaiAlphabets';
-import { GET_QUESTION } from '../actions/quiz';
+import {
+  GET_QUESTION,
+  ADD_FINISHED_QUESTION,
+  ADD_SCORE
+} from '../actions/quiz';
 
 const initialState = {
   alphabets: thaiAlphabets,
   selections: [],
   question: {},
-  questionIndex: null
+  questionIndex: null,
+  finishedQuestions: [],
+  score: 0
 };
 
-export default function(state= initialState, action) {
-/*
-  if (action.type === SET_INDEX) {
-    return {
-      ...state,
-      selectedIndex: action.payload
-    };
-  }
-  */
-  if (action.type === GET_QUESTION) {
-    let selections = [];
-    for (x=0;x<4;x++) {
-      selections.push(state.alphabets[x]);
+function getRandomAlphabet(alphabets, finishedQuestions) {
+  let selection = null;
+  let randArr = [];
+  while (selection == null) {
+    let rand = Math.floor((Math.random() * alphabets.length));
+    if (randArr.indexOf(rand) == true) {
+      console.log(rand);
+      continue;
     }
-    return {
-      ...state,
-      selections: selections,
-      question: selections[0],
-      questionIndex: 0
-    };
+    selection = alphabets[rand];
+    let searchResult = null;
+    for (var i in finishedQuestions) {
+      if ( typeof finishedQuestions[i] != 'undefined'
+      && finishedQuestions[i].symbol == selection.symbol ) {
+        searchResult = finishedQuestions[i].symbol;
+        break;
+      }
+    }
+    if (searchResult != null) {
+      selection = null;
+      randArr.push(rand);
+    }
   }
-  return state;
+  return selection;
+}
+
+export default function(state = initialState, action) {
+  switch (action.type) {
+    case GET_QUESTION:
+      let selections = [];
+      let question = getRandomAlphabet(state.alphabets, state.finishedQuestions);
+
+      let answerIndex = Math.floor(Math.random() * 4);
+      for (var i=0;i<4;i++) {
+        if (answerIndex == i) {
+          selections.push(question);
+        } else {
+          selections.push(getRandomAlphabet(state.alphabets, selections));
+        }
+      }
+      return {
+        ...state,
+        selections: selections,
+        question: question,
+        questionIndex: answerIndex
+      };
+    case ADD_FINISHED_QUESTION:
+      let bufArr = state.finishedQuestions;
+      bufArr.push(action.question);
+      return {
+        ...state,
+        finishedQuestions: bufArr
+      };
+    case ADD_SCORE:
+      let buf = state.score + 1;
+      return {
+        ...state,
+        score: buf
+      };
+    default:
+      return state;
+
+  }
+
 }

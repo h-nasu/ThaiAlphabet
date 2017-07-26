@@ -10,7 +10,11 @@ import {
   Button
 } from "native-base";
 import { Col, Row, Grid } from "react-native-easy-grid";
-import { getQuestion } from "../actions/quiz";
+import {
+  getQuestion,
+  addFinishedQuestions,
+  addScore
+} from "../actions/quiz";
 
 
 class Quiz extends React.Component {
@@ -20,24 +24,23 @@ class Quiz extends React.Component {
 
   constructor() {
     super();
-    this.state = {
+    this.initQuiz = {
       selections: [],
       answers: [],
       selected: null,
       canCheck: true,
       checked: null,
-      score: 0,
-    }
+    };
+    this.state = this.initQuiz;
   }
 
   componentDidMount() {
-    this.props.getQuestion({});
-    //this.selectAnswer();
+    this.props.getQuestion();
   }
 
   selectAnswer(index = null) {
     let buf = [];
-    for (i=0;i<this.props.selections.length;i++) {
+    for (var i=0;i<this.props.selections.length;i++) {
       buf[i] = (i===index) ? 'yellow' : 'transparent' ;
     }
     this.setState({selections: buf, selected: index, canCheck: false});
@@ -53,16 +56,21 @@ class Quiz extends React.Component {
 
   getAnswer() {
     if (this.state.selected == this.props.questionIndex) {
-      let newScore = this.state.score + 1;
+      this.props.addScore();
       this.setState({
-        checked: (<Text style={{ ...styles.definition, ...{color: 'blue', margin: 5} }} >Correct!</Text>),
-        score: newScore
+        checked: (<Text style={{ ...styles.definition, ...{color: 'blue', margin: 5} }} >Correct!</Text>)
       });
     } else {
       this.setState({checked: (<Text style={{ ...styles.definition, ...{color: 'red', margin: 5} }} >Wrong</Text>)});
     }
     this.highLightAnswer(this.props.questionIndex);
+    this.props.addFinishedQuestions(this.props.question);
 
+  }
+
+  nextQuestion() {
+    this.setState(this.initQuiz);
+    this.props.getQuestion();
   }
 
   _showAnswer(alphabet) {
@@ -73,7 +81,7 @@ class Quiz extends React.Component {
     }
   }
 
-  makeSelection(index, alphabet) {
+  _makeSelection(index, alphabet) {
     return ( <Col key={index}
       style={ {...styles.answer, ...{backgroundColor: this.state.selections[index]} } }
       onPress={ () => this.selectAnswer(index) }
@@ -88,17 +96,37 @@ class Quiz extends React.Component {
     </Col> );
   }
 
-  render() {
+  answerArea() {
     let selections = [];
     let selectionBuf = [];
     for (i=0;i<this.props.selections.length;i++) {
       let odd = i % 2;
-      selectionBuf.push(this.makeSelection(i, this.props.selections[i]));
+      selectionBuf.push(this._makeSelection(i, this.props.selections[i]));
       if (odd > 0) {
         selections.push(<Row key={i} style={styles.answerRow} >{selectionBuf}</Row>);
         selectionBuf = [];
       }
     };
+    return selections;
+  }
+
+  answerButton() {
+    if (this.state.checked == null) {
+      return (
+        <Button disabled={this.state.canCheck} onPress={ () => this.getAnswer() } style={{marginTop: 10}} >
+          <Text>Answer</Text>
+        </Button>
+      );
+    } else {
+      return (
+        <Button onPress={ () => this.nextQuestion() } style={{marginTop: 10}} >
+          <Text>Next Question</Text>
+        </Button>
+      );
+    }
+  }
+
+  render() {
     return (
       <Container>
         <Content>
@@ -108,15 +136,12 @@ class Quiz extends React.Component {
               <Text style={styles.symbol}>{this.props.question.symbol}</Text>
             </Row>
             <Row>
-              <Text style={styles.score}>Score: {this.state.score}</Text>
+              <Text style={styles.score}>Score: {this.props.score}</Text>
             </Row>
-
-            {selections}
+              {this.answerArea()}
             <Row>{this.state.checked}</Row>
             <Row>
-              <Button disabled={this.state.canCheck} onPress={ () => this.getAnswer() } style={{marginTop: 10}} >
-                <Text>Answer</Text>
-              </Button>
+              {this.answerButton()}
             </Row>
 
           </Grid>
@@ -128,7 +153,9 @@ class Quiz extends React.Component {
 
 function bindAction(dispatch) {
   return {
-    getQuestion: used => dispatch(getQuestion(used)),
+    getQuestion: () => dispatch(getQuestion()),
+    addFinishedQuestions: (question) => dispatch(addFinishedQuestions(question)),
+    addScore: () => dispatch(addScore()),
   };
 }
 const mapStateToProps = state => ({
@@ -136,6 +163,7 @@ const mapStateToProps = state => ({
   selections: state.alphabet.selections,
   question: state.alphabet.question,
   questionIndex: state.alphabet.questionIndex,
+  score: state.alphabet.score,
 });
 
 const AlphabetSwagger = connect(mapStateToProps, bindAction)(Quiz);

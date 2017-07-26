@@ -306,15 +306,6 @@
 		"class": "–"
 	},
 	{
-		"symbol": "",
-		"readingThai": "",
-		"readingEng": "",
-		"meaning": "",
-		"initial": "",
-		"final": "or [n]",
-		"class": ""
-	},
-	{
 		"symbol": "ร",
 		"readingThai": "ร เรือ",
 		"readingEng": "ro ruea",
@@ -403,8 +394,5 @@
 		"initial": "h",
 		"final": " –",
 		"class": "low"
-	},
-	{
-		"symbol": ""
 	}
 ]
