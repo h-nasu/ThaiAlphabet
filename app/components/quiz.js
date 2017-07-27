@@ -1,13 +1,21 @@
 import React, { Component } from "react";
-import { Dimensions, Text } from "react-native";
+import { Dimensions, View, Alert } from "react-native";
 import { connect } from "react-redux";
 import {
   Container,
   Content,
-  //Text,
+  Text,
   List,
   ListItem,
-  Button
+  Button,
+  Header,
+  Left,
+  Title,
+  Right,
+  Icon,
+  Body,
+  Item,
+  Input
 } from "native-base";
 import { Col, Row, Grid } from "react-native-easy-grid";
 import {
@@ -15,11 +23,12 @@ import {
   addFinishedQuestions,
   addScore
 } from "../actions/quiz";
-
+import Modal from 'react-native-modal';
+import StartQuizForm from './utils/StartQuizForm';
 
 class Quiz extends React.Component {
   static navigationOptions = {
-    title: 'Quiz'
+    header: null
   };
 
   constructor() {
@@ -30,7 +39,10 @@ class Quiz extends React.Component {
       selected: null,
       canCheck: true,
       checked: null,
+      resetModalVisible: false,
     };
+    this.initQuiz.totalQuestions = '10';
+    console.log(this.initQuiz);
     this.state = this.initQuiz;
   }
 
@@ -73,9 +85,9 @@ class Quiz extends React.Component {
     this.props.getQuestion();
   }
 
-  _showAnswer(alphabet) {
+  _showAnswer(index, alphabet) {
     if (this.state.checked != null) {
-      return (<Text  style={styles.definition}>{alphabet.readingThai}{'\n'}</Text>);
+      return (<Text style={{...styles.definition,...{color: this.state.answers[index]}}}>{alphabet.readingThai}{'\n'}</Text>);
     } else {
       return null;
     }
@@ -86,13 +98,13 @@ class Quiz extends React.Component {
       style={ {...styles.answer, ...{backgroundColor: this.state.selections[index]} } }
       onPress={ () => this.selectAnswer(index) }
     >
-      <Text style={{color: this.state.answers[index]}} >
-        {this._showAnswer(alphabet)}
-        <Text style={styles.definition}>{alphabet.readingEng}{'\n'}</Text>
-        <Text style={styles.definition}>{alphabet.meaning}{'\n'}</Text>
-        Initial: <Text  style={styles.definition}>{alphabet.initial}{'\n'}</Text>
-        Final: <Text  style={styles.definition}>{alphabet.final}</Text>
-      </Text>
+    <Text style={{color: this.state.answers[index]}} >
+      {this._showAnswer(index, alphabet)}
+      <Text style={{...styles.definition,...{color: this.state.answers[index]}}}>{alphabet.readingEng}{'\n'}</Text>
+      <Text style={{...styles.definition,...{color: this.state.answers[index]}}}>{alphabet.meaning}{'\n'}</Text>
+      Initial: <Text  style={{...styles.definition,...{color: this.state.answers[index]}}}>{alphabet.initial}{'\n'}</Text>
+      Final: <Text  style={{...styles.definition,...{color: this.state.answers[index]}}}>{alphabet.final}</Text>
+    </Text>
     </Col> );
   }
 
@@ -126,9 +138,51 @@ class Quiz extends React.Component {
     }
   }
 
+  _onNumberChange(text) {
+    let newText = '';
+    let numbers = '0123456789';
+
+    for (var i = 0; i < text.length; i++) {
+        if ( numbers.indexOf(text[i]) > -1 ) {
+            newText = newText + text[i];
+        }
+    }
+    return newText;
+  }
+
+  onStartNewQuize(values) {
+    //Alert.alert('Submitted!', JSON.stringify(values));
+    console.log(values);
+    //this.setState({resetModalVisible: false});
+
+  }
+
+
+
   render() {
     return (
       <Container>
+
+        <Header>
+          <Left>
+            <Button transparent onPress={() => this.props.navigation.goBack()}>
+              <Icon name="ios-arrow-back" />
+            </Button>
+          </Left>
+
+          <Body>
+            <Title>Quiz</Title>
+          </Body>
+
+          <Right>
+            <Button light onPress={() => this.setState({resetModalVisible: true})} >
+              <Text>
+                Reset
+              </Text>
+            </Button>
+          </Right>
+        </Header>
+
         <Content>
           <Grid style={{alignItems: 'center'}} >
 
@@ -146,7 +200,23 @@ class Quiz extends React.Component {
 
           </Grid>
         </Content>
+
+        <Modal
+          isVisible={this.state.resetModalVisible}
+          style={{alignItems: 'center'}}
+        >
+          <View style={styles.modalContent} >
+            <StartQuizForm
+              totalQuestions={this.state.totalQuestions}
+              totalAlphabets={this.props.alphabets.length}
+              onSubmit={this.onStartNewQuize.bind(this)}
+            />
+          </View>
+        </Modal>
+
       </Container>
+
+
     );
   }
 }
@@ -193,5 +263,13 @@ const styles = {
   },
   score: {
     fontSize: 20
-  }
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+  },
 };
