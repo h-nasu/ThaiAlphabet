@@ -2,7 +2,8 @@ import thaiAlphabets from '../resources/thaiAlphabets';
 import {
   GET_QUESTION,
   ADD_FINISHED_QUESTION,
-  ADD_SCORE
+  ADD_SCORE,
+  LOAD_NEW_QUIZ
 } from '../actions/quiz';
 
 const initialState = {
@@ -73,6 +74,12 @@ export default function(state = initialState, action) {
         ...state,
         score: buf
       };
+    case LOAD_NEW_QUIZ:
+      return {
+        ...state,
+        finishedQuestions: [],
+        score: 0
+      }
     default:
       return state;
 

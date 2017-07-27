@@ -24,27 +24,18 @@ class StartQuizForm extends React.Component {
       totalAlphabets: totalAlphabets
     });
   }
-/*
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.submitting !== this.state.submitting) {
-      this.setState({submitting: nextProps.submitting})
-    }
-  }
-*/
-  _submitState() {
-    return this.props.submitting;
-  }
 
   render() {
     return (
       <View>
 
+        <Text>Number of Questions</Text>
         <Field
           name={'totalQuestions'}
           component={MyInput}
         />
 
-        <Button onPress={this.props.handleSubmit} disabled={this.props.submitting} >
+        <Button onPress={this.props.handleSubmit} disabled={!this.props.valid} >
           <Text>Start Quiz</Text>
         </Button>
       </View>
@@ -55,15 +46,13 @@ class StartQuizForm extends React.Component {
 
 const validate = values => {
   const errors = {};
-  /*
-  errors.email = !values.email
-    ? 'Email field is required'
-    : !emailRegex.test(values.email)
-    ? 'Email format is invalid'
-    : undefined;
-  */
+
   errors.totalQuestions = !values.totalQuestions
     ? 'Required'
+    : isNaN(Number(values.totalQuestions))
+    ? 'Must be a Numer'
+    : values.totalQuestions > values.totalAlphabets
+    ? 'Must be smaller than ' + values.totalAlphabets
     : undefined;
 
   return errors;

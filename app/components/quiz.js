@@ -21,7 +21,8 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 import {
   getQuestion,
   addFinishedQuestions,
-  addScore
+  addScore,
+  loadNewQuiz
 } from "../actions/quiz";
 import Modal from 'react-native-modal';
 import StartQuizForm from './utils/StartQuizForm';
@@ -40,9 +41,11 @@ class Quiz extends React.Component {
       canCheck: true,
       checked: null,
       resetModalVisible: false,
+      // will change
+      totalQuestionsText: '10',
+      totalQuestions:10,
+      questionNumber: 1
     };
-    this.initQuiz.totalQuestions = '10';
-    console.log(this.initQuiz);
     this.state = this.initQuiz;
   }
 
@@ -80,8 +83,17 @@ class Quiz extends React.Component {
 
   }
 
-  nextQuestion() {
-    this.setState(this.initQuiz);
+  nextQuestion(questionNumber, initArr = []) {
+    if (initArr.length == 0) {
+      this.initQuiz.totalQuestions = this.state.totalQuestions;
+      this.initQuiz.totalQuestionsText = this.state.totalQuestionsText;
+    }
+
+    //let initQuizArr = this.initQuiz;
+    this.initQuiz.questionNumber = questionNumber;
+    buf = {...this.initQuiz, ...initArr};
+    console.log(buf);
+    this.setState(buf);
     this.props.getQuestion();
   }
 
@@ -108,7 +120,7 @@ class Quiz extends React.Component {
     </Col> );
   }
 
-  answerArea() {
+  _answerArea() {
     let selections = [];
     let selectionBuf = [];
     for (i=0;i<this.props.selections.length;i++) {
@@ -122,16 +134,22 @@ class Quiz extends React.Component {
     return selections;
   }
 
-  answerButton() {
+  _answerButton() {
     if (this.state.checked == null) {
       return (
         <Button disabled={this.state.canCheck} onPress={ () => this.getAnswer() } style={{marginTop: 10}} >
           <Text>Answer</Text>
         </Button>
       );
+    } else if (this.state.questionNumber >= this.state.totalQuestions) {
+      return (
+        <Button disabled={this.state.canCheck} onPress={ () => this.setState({resetModalVisible: true}) } style={{marginTop: 10}} >
+          <Text>New Quiz</Text>
+        </Button>
+      );
     } else {
       return (
-        <Button onPress={ () => this.nextQuestion() } style={{marginTop: 10}} >
+        <Button onPress={ () => this.nextQuestion(this.state.questionNumber + 1) } style={{marginTop: 10}} >
           <Text>Next Question</Text>
         </Button>
       );
@@ -152,8 +170,11 @@ class Quiz extends React.Component {
 
   onStartNewQuize(values) {
     //Alert.alert('Submitted!', JSON.stringify(values));
-    console.log(values);
-    //this.setState({resetModalVisible: false});
+    this.props.loadNewQuiz();
+    this.nextQuestion(1, {
+      totalQuestionsText: values.totalQuestions,
+      totalQuestions: parseInt(values.totalQuestions),
+    });
 
   }
 
@@ -190,12 +211,15 @@ class Quiz extends React.Component {
               <Text style={styles.symbol}>{this.props.question.symbol}</Text>
             </Row>
             <Row>
-              <Text style={styles.score}>Score: {this.props.score}</Text>
+              <Text style={styles.score}>Question: {this.state.questionNumber}/{this.state.totalQuestions}</Text>
             </Row>
-              {this.answerArea()}
+            <Row>
+              <Text style={styles.score}>Total Score: {this.props.score}</Text>
+            </Row>
+              {this._answerArea()}
             <Row>{this.state.checked}</Row>
             <Row>
-              {this.answerButton()}
+              {this._answerButton()}
             </Row>
 
           </Grid>
@@ -207,7 +231,7 @@ class Quiz extends React.Component {
         >
           <View style={styles.modalContent} >
             <StartQuizForm
-              totalQuestions={this.state.totalQuestions}
+              totalQuestions={this.state.totalQuestionsText}
               totalAlphabets={this.props.alphabets.length}
               onSubmit={this.onStartNewQuize.bind(this)}
             />
@@ -226,6 +250,7 @@ function bindAction(dispatch) {
     getQuestion: () => dispatch(getQuestion()),
     addFinishedQuestions: (question) => dispatch(addFinishedQuestions(question)),
     addScore: () => dispatch(addScore()),
+    loadNewQuiz: () => dispatch(loadNewQuiz()),
   };
 }
 const mapStateToProps = state => ({
@@ -245,6 +270,7 @@ const styles = {
     fontSize: 100,
     fontWeight: 'bold',
     marginRight: 20,
+    marginTop: -20,
   },
   definition: {
     fontSize: 20,

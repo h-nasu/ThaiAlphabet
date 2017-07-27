@@ -3,6 +3,7 @@ export const GET_QUESTION = 'GET_QUESTION';
 export const ADD_FINISHED_QUESTION = 'ADD_FINISHED_QUESTION';
 export const ADD_SCORE = 'ADD_SCORE';
 export const LOAD_QUIZ_FORM = 'LOAD_QUIZ_FORM';
+export const LOAD_NEW_QUIZ = 'LOAD_NEW_QUIZ';
 
 export function getQuestion() {
   return {
@@ -24,3 +25,5 @@ export function addScore() {
 }
 
 export const loadQuizForm = data => ({ type: LOAD_QUIZ_FORM, data });
+
+export const loadNewQuiz = () => ({ type: LOAD_NEW_QUIZ });
