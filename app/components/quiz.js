@@ -208,18 +208,23 @@ class Quiz extends React.Component {
 
             <Row>
               <Text style={styles.symbol}>{this.props.question.symbol}</Text>
+
             </Row>
             <Row>
-              <Text style={styles.score}>Question: {this.state.questionNumber}/{this.state.totalQuestions}</Text>
+              {this.state.checked}
             </Row>
-            <Row>
-              <Text style={styles.score}>Total Score: {this.props.score}</Text>
+            <Row style={{marginBottom: 10}}>
+              <Col style={styles.infoArea}>
+                <Text style={styles.score}>Question: {this.state.questionNumber}/{this.state.totalQuestions}</Text>
+                <Text style={styles.score}>Total Score: {this.props.score}</Text>
+              </Col>
+              <Col style={styles.infoArea}>
+                {this._answerButton()}
+              </Col>
+
             </Row>
-              {this._answerArea()}
-            <Row>{this.state.checked}</Row>
-            <Row>
-              {this._answerButton()}
-            </Row>
+
+            {this._answerArea()}
 
           </Grid>
         </Content>
@@ -288,6 +293,11 @@ const styles = {
   },
   score: {
     fontSize: 20
+  },
+  infoArea: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   modalContent: {
     backgroundColor: 'white',

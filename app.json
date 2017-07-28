@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "18.0.0"
+    "name": "Thai Alaphapet Quiz",
+    "sdkVersion": "18.0.0",
+    "icon": "",
+    "version": "0.0.1",
+    "slug": "thai-alphabet-quiz",
+    "ios": {
+      "bundleIdentifier": "com.cyberworks.thaialphabetquiz"
+    },
+    "android": {
+      "package": "com.cyberworks.thaialphabetquiz"
+    }
   }
 }
