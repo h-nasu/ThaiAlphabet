@@ -88,12 +88,8 @@ class Quiz extends React.Component {
       this.initQuiz.totalQuestions = this.state.totalQuestions;
       this.initQuiz.totalQuestionsText = this.state.totalQuestionsText;
     }
-
-    //let initQuizArr = this.initQuiz;
     this.initQuiz.questionNumber = questionNumber;
-    buf = {...this.initQuiz, ...initArr};
-    console.log(buf);
-    this.setState(buf);
+    this.setState({...this.initQuiz, ...initArr});
     this.props.getQuestion();
   }
 
@@ -186,7 +182,10 @@ class Quiz extends React.Component {
 
         <Header>
           <Left>
-            <Button transparent onPress={() => this.props.navigation.goBack()}>
+            <Button transparent onPress={() => {
+                this.props.loadNewQuiz();
+                this.props.navigation.goBack()
+            }}>
               <Icon name="ios-arrow-back" />
             </Button>
           </Left>
@@ -270,7 +269,7 @@ const styles = {
     fontSize: 100,
     fontWeight: 'bold',
     marginRight: 20,
-    marginTop: -20,
+    marginTop: -10,
   },
   definition: {
     fontSize: 20,

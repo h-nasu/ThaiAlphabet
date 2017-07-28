@@ -6,17 +6,10 @@ import { Text, Button, Item } from "native-base";
 
 import { connect } from 'react-redux';
 import startQuiz from '../../reducers/startQuiz';
-import { loadQuizForm } from '../../actions/quiz';
+import { loadQuizForm, setTotalQuestion } from '../../actions/quiz';
 
 class StartQuizForm extends React.Component {
-/*
-  constructor() {
-    super();
-    this.state = {
-      submitting: false,
-    };
-  }
-*/
+
   componentDidMount() {
     const { loadQuizForm, totalQuestions, totalAlphabets } = this.props;
     loadQuizForm({
@@ -33,11 +26,14 @@ class StartQuizForm extends React.Component {
         <Field
           name={'totalQuestions'}
           component={MyInput}
+          onFocusAction={(e) => this.props.setTotalQuestion('')}
+          selectKeyboardType="numeric"
         />
 
         <Button onPress={this.props.handleSubmit} disabled={!this.props.valid} >
           <Text>Start Quiz</Text>
         </Button>
+
       </View>
     );
   }
@@ -60,6 +56,7 @@ const validate = values => {
 
 StartQuizForm = reduxForm({
   form: 'startQuiz',
+  enableReinitialize: true,
   validate
 })(StartQuizForm);
 
@@ -69,7 +66,8 @@ StartQuizForm = connect(
     initialValues: state.startQuiz.data
   }),
   dispatch => ({
-    loadQuizForm: (data) => dispatch(loadQuizForm(data))
+    loadQuizForm: (data) => dispatch(loadQuizForm(data)),
+    setTotalQuestion: (strNum) => dispatch(setTotalQuestion(strNum))
   })
 )(StartQuizForm)
 

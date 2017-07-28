@@ -1,7 +1,4 @@
-// add reset button on header right
-// popup modal for number of questions
-// add question number / total questions
-// add finish logic
+// add ad
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
