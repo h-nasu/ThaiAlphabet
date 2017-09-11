@@ -7,13 +7,6 @@ import { Item, Icon, Input, Text } from "native-base";
  */
 export default class MyInput extends React.Component {
 
-  componentDidMount() {
-    const { input, meta, ...inputProps } = this.props;
-    console.log(input);
-    console.log(meta);
-  }
-
-
   render() {
     return (
       <View style={{marginBottom: 10}}>

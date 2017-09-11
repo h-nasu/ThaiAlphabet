@@ -18,16 +18,16 @@ const initialState = {
 function getRandomAlphabet(alphabets, finishedQuestions) {
   let selection = null;
   let randArr = [];
+
   while (selection == null) {
     let rand = Math.floor((Math.random() * alphabets.length));
     if (randArr.indexOf(rand) == true) {
-      console.log(rand);
       continue;
     }
     selection = alphabets[rand];
     let searchResult = null;
     for (var i in finishedQuestions) {
-      if ( typeof finishedQuestions[i] != 'undefined'
+      if (typeof finishedQuestions[i] != 'undefined'
       && finishedQuestions[i].symbol == selection.symbol ) {
         searchResult = finishedQuestions[i].symbol;
         break;
@@ -45,11 +45,13 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case GET_QUESTION:
       let selections = [];
-      let question = getRandomAlphabet(state.alphabets, state.finishedQuestions);
+      let question = {};
 
       let answerIndex = Math.floor(Math.random() * 4);
       for (var i=0;i<4;i++) {
         if (answerIndex == i) {
+          let combineArr = state.finishedQuestions.concat(selections);
+          question = getRandomAlphabet(state.alphabets, combineArr);
           selections.push(question);
         } else {
           selections.push(getRandomAlphabet(state.alphabets, selections));
